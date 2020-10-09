@@ -1,7 +1,7 @@
 ## Description
 
 You are provided with a pre-generated graph consisting of 500 rooms. You are responsible for filling `traversal_path` with directions that, when walked in order, will visit every room on the map at least once.
-( best to use `Breadth First Search` )
+
 Open `adv.py`. There are four parts to the provided code:
 
 - World generation code. Do not modify this!
@@ -64,3 +64,13 @@ My best path is 957 moves. Can you find a shorter path?
 | ------------------------------------------------------------------------------------- | ----------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------ | ----- |
 | _Student can demonstrate applied knowledge of Graph Theory by traversing a large map_ | Complete traversal of a large Graph | Student unable to produce a valid traversal path of 2000 moves or less | Student is able to produce a valid traversal path between 960 and 2000 | Student produces a valid traversal path of 959 moves or less |       |
 | **FINAL SCORE**                                                                       |                                     | **0-1**                                                                | **2**                                                                  | **3**                                                        |       |
+
+---
+
+###
+
+- map_file = "maps/test_line.txt" - shortest is 2
+- map_file = "maps/test_cross.txt" - shortest is 14
+- map_file = "maps/test_loop.txt" - shortest is 14
+- map_file = "maps/test_loop_fork.txt" - shortest is 24
+- map_file = "maps/main_maze.txt" - shortest is 918
