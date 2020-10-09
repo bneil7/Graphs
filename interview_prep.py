@@ -19,7 +19,7 @@ Verbalize your thought process as much as possible before writing any code. Run 
 '''
 
 # loop over array
-# sorted method (alpha default)
+# sorted method (alphabetical default)
 
 arr = ['Waltz', 'Tango', 'Viennese Waltz', 'Foxtrot',
        'Cha Cha', 'Samba', 'Rumba', 'Paso Doble', 'Jive']

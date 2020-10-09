@@ -48,11 +48,16 @@ world = World()
 # using BFS and DFT to reach every node (room in this case)
 
 # You may uncomment the smaller graphs for development and testing purposes.
-# map_file = "maps/test_line.txt"
+map_file = "maps/test_line.txt"
+# - shortest is 2
 # map_file = "maps/test_cross.txt"
+# - shortest is 14
 # map_file = "maps/test_loop.txt"
+# - shortest is 14
 # map_file = "maps/test_loop_fork.txt"
-map_file = "maps/main_maze.txt"  # largest
+# - shortest is 24
+# map_file = "maps/main_maze.txt"
+# largest graph - shortest is 918
 # MUST PASS IN LESS THAN 2000 STEPS (should only take a few seconds at most tbh)
 
 # Loads the map into a dictionary
@@ -67,8 +72,61 @@ player = Player(world.starting_room)
 # Fill this out with directions to walk
 # traversal_path = ['n', 'n']
 traversal_path = []
+traversal_graph = {}
 
-# create a traversal here
+# initiate variables to hold values of previous rooms and directions
+prev_room = None
+prev_direction = None
+
+# dict to hold values of each cardinal direction's corresponding opposite
+opp_direction = {
+    "n": "s",
+    "s": "n",
+    "e": "w",
+    "w": "e"
+}
+
+# Commands:
+# player.current_room.id,
+# player.current_room.get_exits()
+# player.travel(direction)
+
+# traverse the entire length of the graph
+while len(traversal_graph) < len(room_graph):
+    # print(player.current_room.id)
+    # print("---")
+    # print(traversal_graph, "<-- traversal graph")
+    # print("---")
+    # print(traversal_path, "<-- traversal path")
+
+    # show exits in current room
+    exits = player.current_room.get_exits()
+
+    # if all rooms visited, break
+    if len(traversal_graph) == len(room_graph):
+        break
+
+    # add current room and exits to traversal graph
+    if player.current_room.id not in traversal_graph:
+        traversal_graph[player.current_room.id] = {}
+        # loop thru cardinal directions in exits and add "?"
+        for direction in exits:
+            traversal_graph[player.current_room.id][direction] = "?"
+
+    # get first unexplored room
+    for direction in traversal_graph[player.current_room.id]:
+        if traversal_graph[player.current_room.id][direction] == "?":
+            traversal_path.append(direction)
+            prev_room = player.current_room.id
+            player.travel(direction)
+            traversal_graph[prev_room][direction] = player.current_room.id
+        break
+
+
+print(traversal_graph, "<-- traversal graph")
+print("---")
+print(traversal_path, "<-- traversal path")
+
 
 # TRAVERSAL TEST
 visited_rooms = set()
